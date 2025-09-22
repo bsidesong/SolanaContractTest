@@ -1,0 +1,12 @@
+[package]
+name = "ppt2"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+solana-program = "1.14.15"    # ou a versão mais recente estável do SDK Solana
+borsh = "0.10.3"
+borsh-derive = "0.10.3"

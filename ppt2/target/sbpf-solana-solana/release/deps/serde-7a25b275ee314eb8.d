@@ -1,0 +1,14 @@
+/workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/deps/libserde-7a25b275ee314eb8.rmeta: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/ser.rs /workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/build/serde-699a212e6b8c5ab4/out/private.rs
+
+/workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/deps/libserde-7a25b275ee314eb8.rlib: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/ser.rs /workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/build/serde-699a212e6b8c5ab4/out/private.rs
+
+/workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/deps/serde-7a25b275ee314eb8.d: /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/lib.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/integer128.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/mod.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/de.rs /home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/ser.rs /workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/build/serde-699a212e6b8c5ab4/out/private.rs
+
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/lib.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/integer128.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/mod.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/de.rs:
+/home/codespace/.cargo/registry/src/index.crates.io-6f17d22bba15001f/serde-1.0.225/src/private/ser.rs:
+/workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/build/serde-699a212e6b8c5ab4/out/private.rs:
+
+# env-dep:OUT_DIR=/workspaces/codespaces-blank/ppt2/target/sbpf-solana-solana/release/build/serde-699a212e6b8c5ab4/out

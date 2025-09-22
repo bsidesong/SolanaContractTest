@@ -1,0 +1,5 @@
+[workspace]
+members = ["programs/ppt2",]
+
+[profile.release]
+overflow-checks = true
