@@ -60,10 +60,6 @@
           "relations": [
             "game_state"
           ]
-        },
-        {
-          "name": "treasury",
-          "writable": true
         }
       ],
       "args": [
@@ -97,10 +93,6 @@
           "relations": [
             "game_state"
           ]
-        },
-        {
-          "name": "treasury",
-          "writable": true
         },
         {
           "name": "system_program",

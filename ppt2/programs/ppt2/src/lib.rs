@@ -1,5 +1,5 @@
-
 use anchor_lang::prelude::*;
+use anchor_lang::solana_program::pubkey;
 use anchor_lang::solana_program::entrypoint::ProgramResult;
 use anchor_lang::solana_program::system_program;
 use anchor_lang::solana_program::clock::Clock;
@@ -7,6 +7,8 @@ use anchor_lang::solana_program::hash::hash;
 
 
 declare_id!("5ccZFdZ3eQxiN6vvYcAurVcSrMPsQHcwNZFZSfFDzv8J"); // Substitua pelo seu Program ID gerado
+
+const TREASURY_PUBKEY: Pubkey = pubkey!("DEr8Y8GG19SSXHBDMcFVvxwrcZxFcihsm3CrQZtkrkbH");
 
 #[program]
 pub mod ppt2 {
@@ -25,7 +27,7 @@ pub mod ppt2 {
     pub fn make_play(ctx: Context<MakePlay>, player_move: u8) -> Result<()> {
         let game_state = &mut ctx.accounts.game_state;
         let _player = &ctx.accounts.player; // Usado para validação, mas não diretamente aqui
-        let _treasury = &ctx.accounts.treasury; // Usado para validação, mas não diretamente aqui
+
 
         // Verificar se o jogador tem jogadas restantes
         if game_state.plays_left == 0 {
@@ -69,19 +71,16 @@ pub mod ppt2 {
     pub fn pay_for_plays(ctx: Context<PayForPlays>) -> Result<()> {
         let game_state = &mut ctx.accounts.game_state;
         let player = &ctx.accounts.player;
-        let treasury = &ctx.accounts.treasury;
-
         // Transferir 0.01 SOL (10_000_000 lamports) do jogador para a conta de tesouraria
         let ix = anchor_lang::solana_program::system_instruction::transfer(
             &player.key(),
-            &treasury.key(),
+            &TREASURY_PUBKEY,
             10_000_000, // 0.01 SOL
         );
         anchor_lang::solana_program::program::invoke(
             &ix,
             &[
                 player.to_account_info(),
-                treasury.to_account_info(),
                 ctx.accounts.system_program.to_account_info(),
             ],
         )?;
@@ -94,7 +93,6 @@ pub mod ppt2 {
     }
 
     pub fn withdraw_treasury(ctx: Context<WithdrawTreasury>, amount: u64) -> Result<()> {
-        let treasury = &mut ctx.accounts.treasury;
         let admin = &ctx.accounts.admin;
 
         // Apenas o administrador pode sacar. O admin deve ser uma chave específica, não o program_id.
@@ -105,7 +103,13 @@ pub mod ppt2 {
         // Por enquanto, a validação de que `admin` é o `Signer` já é feita pelo Anchor.
 
         // Transferir fundos da tesouraria para o administrador
-        **treasury.to_account_info().try_borrow_mut_lamports()? -= amount;
+        // Precisamos de uma conta mutável para a tesouraria para poder subtrair lamports
+        let treasury_account_info = &ctx.remaining_accounts[0]; // Assumindo que a tesouraria é o primeiro remaining_account
+        if treasury_account_info.key() != TREASURY_PUBKEY {
+            return err!(ErrorCode::Unauthorized);
+        }
+
+        **treasury_account_info.try_borrow_mut_lamports()? -= amount;
         **admin.to_account_info().try_borrow_mut_lamports()? += amount;
 
         Ok(())
@@ -127,9 +131,7 @@ pub struct MakePlay<'info> {
     pub game_state: Account<'info, GameState>,
     #[account(mut)]
     pub player: Signer<'info>,
-    /// CHECK: A conta de tesouraria é apenas para receber fundos
-    #[account(mut)]
-    pub treasury: AccountInfo<'info>,
+
 }
 
 #[derive(Accounts)]
@@ -138,9 +140,6 @@ pub struct PayForPlays<'info> {
     pub game_state: Account<'info, GameState>,
     #[account(mut)]
     pub player: Signer<'info>,
-    /// CHECK: A conta de tesouraria é apenas para receber fundos
-    #[account(mut)]
-    pub treasury: AccountInfo<'info>,
     pub system_program: Program<'info, System>,
 }
 
@@ -183,5 +182,3 @@ pub enum ErrorCode {
     #[msg("Unauthorized to perform this action.")]
     Unauthorized,
 }
-
-

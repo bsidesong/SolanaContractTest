@@ -66,10 +66,6 @@ export type Ppt2 = {
           "relations": [
             "gameState"
           ]
-        },
-        {
-          "name": "treasury",
-          "writable": true
         }
       ],
       "args": [
@@ -103,10 +99,6 @@ export type Ppt2 = {
           "relations": [
             "gameState"
           ]
-        },
-        {
-          "name": "treasury",
-          "writable": true
         },
         {
           "name": "systemProgram",
